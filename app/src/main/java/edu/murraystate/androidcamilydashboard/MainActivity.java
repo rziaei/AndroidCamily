@@ -3,11 +3,11 @@ package edu.murraystate.androidcamilydashboard;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.location.Location;
-import android.location.LocationManager;
+
 import android.os.Bundle;
 import android.os.Looper;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -24,12 +24,14 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.location.SettingsClient;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.functions.FirebaseFunctions;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import edu.murraystate.androidcamilydashboard.Useless.ToDo.Activity_ToDoList;
 
@@ -48,10 +50,19 @@ public class MainActivity extends AppCompatActivity implements
     protected SettingsClient settingsClient;
     protected boolean requestingLocationUpdates;
 
-
+    private FirebaseFunctions mFunctions;
+    protected FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private static final String TAG = activity_familylocator.class.getSimpleName();
     private static final int REQUEST_CHECK_SETTINGS = 0x1;
+
+    private static final String NAME_KEY = "Name";
+    private static final String LAT_KEY = "Latitude";
+    private static final String LONG_KEY = "Longitude";
+    private static final String PHONE_KEY = "Phone Number";
+
+    protected static String name;
+    protected static String nickname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +70,15 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+        Bundle extras = getIntent().getExtras();
+        Intent intent = getIntent();
+        if (extras!=null) {
+            name = extras.getString("username");
+            nickname = extras.getString("nickname");
+        }
+
+        Log.i("test", name.toString());
 
         rellay_todolist = findViewById(R.id.rellay_todolist);
         rellay_personal = findViewById(R.id.rellay_personal);
@@ -104,15 +124,13 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void onSuccess(Location location) {
                 current = location;
-                LatLng self = new LatLng(location.getLatitude(), location.getLongitude());
-                //sendToServer(self);
-
             }
         });
         settingsClient = LocationServices.getSettingsClient(this);
         createLocationRequest();
         createLocationCallback();
         buildLocationSettingsRequest();
+        mFunctions = FirebaseFunctions.getInstance();
     }
 
     protected void createLocationRequest() {
@@ -136,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements
                 Log.i("Update", "Updating Location");
                 super.onLocationResult(locResult);
                 current = locResult.getLastLocation();
-                Log.i("Coords", current.getLatitude() + ", " + current.getLongitude());
+                sendLocation();
             }
         };
     }
@@ -181,11 +199,8 @@ public class MainActivity extends AppCompatActivity implements
                                         "fixed here. Fix in Settings.";
                                 Log.e(TAG, errorMessage);
                         }
-
-
                     }
                 });
-
     }
 
     @Override
@@ -193,4 +208,28 @@ public class MainActivity extends AppCompatActivity implements
         current = location;
     }
 
+    public void sendLocation() {
+        Log.i(TAG, "Location sent");
+        Map<String, Object> user = new HashMap<>();
+        user.put("Name", nickname);
+        user.put("Phone:", "+12345678");
+        user.put("Latitude", current.getLatitude());
+        user.put("Longitude", current.getLongitude());
+
+        db.collection("users").document(name)
+                .set(user)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "User successfully updated");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Update unsuccessful", e);
+                    }
+                });
+    }
 }
+
