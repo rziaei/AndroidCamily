@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "214447875196",
+    "firebase_url": "https://androidcamily.firebaseio.com",
+    "project_id": "androidcamily",
+    "storage_bucket": "androidcamily.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:214447875196:android:b44d76c5d6953d09aa55f9",
+        "android_client_info": {
+          "package_name": "edu.murraystate.androidcamilydashboard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "214447875196-b2u4me4v6hqccvpba14sjohbkkfsfrkf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzjPkQlC2F92WLYW5dAhEDheEPPUd16GE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "214447875196-b2u4me4v6hqccvpba14sjohbkkfsfrkf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

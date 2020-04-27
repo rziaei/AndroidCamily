@@ -1,4 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="google_map_key">AIzaSyByI5grPIt8FHAIoJg7bjGBbXp7sHA1qQE</string>
     <string name="app_name">Camily</string>
     <string name="no_cardetails">Click on the button below to begin creating your reminder!</string>
     <string name="title_activity_add_reminder">Add Reminder</string>
@@ -59,4 +60,24 @@
     <string name="low_priority">Low</string>
 
     <string name="add_button">Add</string>
+    <string name="title_activity_locator_contact">activity_locator_contact</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="contacts">Contacts</string>
+    <string name="title_activity_login">Welcome to Camily!</string>
+    <string name="prompt_username">Username</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_nickname">Nickname</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
 </resources>
