@@ -1,0 +1,12 @@
+<application>
+  <component name="LanguageInjectionConfiguration">
+    <injection language="AIDL" injector-id="xml">
+      <display-name>intent-filter</display-name>
+      <place><![CDATA[xmlTag().withLocalName(string().equalTo("intent-filter"))]]></place>
+    </injection>
+    <injection language="AIDL" injector-id="xml">
+      <display-name>manifest</display-name>
+      <place><![CDATA[xmlTag().withLocalName(string().equalTo("manifest"))]]></place>
+    </injection>
+  </component>
+</application>
