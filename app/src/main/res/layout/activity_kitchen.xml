@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
 
-    tools:context="edu.murraystate.androidcamilydashboard.activity_personal">
+    tools:context="edu.murraystate.androidcamilydashboard.activity.PersonalActivity">
 
 
     <ScrollView
@@ -56,7 +56,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/rellay_GroseryList"
+                android:id="@+id/rellay_GroceryList"
                 android:layout_width="410dp"
                 android:layout_height="158dp"
                 android:layout_margin="2dp"
@@ -72,7 +72,7 @@
                     android:background="@color/colorAquaDark"
                     android:padding="5dp"
                     android:text="
-                    GROUCERY
+                    GROCERY
                                    LIST"
                     android:textAlignment="center"
                     android:textColor="@color/colorWhite"

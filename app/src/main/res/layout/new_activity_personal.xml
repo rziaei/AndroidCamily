@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="edu.murraystate.androidcamilydashboard.activity.PersonalActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:id="@+id/rellay_workout"
+            android:layout_width="match_parent"
+            android:layout_height="216dp"
+            android:background="@color/colorMint"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_margin="24dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_directions_run_black_24dp"
+                android:tint="@color/colorWhite" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:background="@color/colorMintDark"
+                android:gravity="center"
+                android:text="WORK OUT"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/rellay_beamed"
+            android:layout_width="match_parent"
+            android:layout_height="216dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/colorGrapeFruit"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_margin="24dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_face_black_24dp"
+                android:tint="@color/colorWhite" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:background="@color/colorGrapeFruitDark"
+                android:gravity="center"
+                android:text="BEAUTY and  HEALTH"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rellay_friMeet"
+            android:layout_width="match_parent"
+            android:layout_height="216dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/colorFlowerDark"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_margin="24dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_group_black_24dp"
+                android:tint="@color/colorWhite" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:background="@color/colorBrown"
+                android:gravity="center"
+                android:text="FRIENDS and MEETINGS"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
+
+

@@ -29,8 +29,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity_locator_contact" />
-        <activity android:name=".SubActivityKitchenGrocery" />
+        <activity android:name=".activity.activity_locator_contact" />
+        <activity android:name=".activity.SubActivityKitchenGrocery" />
+        <activity android:name=".activity.TaskRingingActivity"></activity>
         <activity android:name=".Useless.ToDo.EditFieldClass" />
         <activity android:name=".MainActivity">
 
@@ -41,31 +42,28 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".activity_familylocator"
+            android:name=".activity.activity_familylocator"
             android:theme="@style/ThemeFamilyLocator" />
         <activity
-            android:name=".activity_kitchen"
+            android:name=".activity.activity_kitchen"
             android:theme="@style/ThemeKitchen" />
         <activity
-            android:name=".activity_personal"
-            android:theme="@style/ThemePersonal" />
-        <activity
-            android:name=".SubActivityKitchenCalories"
+            android:name=".activity.SubActivityKitchenCalories"
             android:theme="@style/ThemeToDoList" />
         <activity
-            android:name=".SubActivityKitchenCaloriesEdit"
+            android:name=".activity.SubActivityKitchenCaloriesEdit"
             android:theme="@style/ThemeToDoList" />
         <activity
-            android:name=".SubActivityFamilyRecipes"
+            android:name=".activity.SubActivityFamilyRecipes"
             android:theme="@style/ThemeToDoList" />
         <activity
-            android:name=".SubActivityFamilyRecipesView"
+            android:name=".activity.SubActivityFamilyRecipesView"
             android:theme="@style/ThemeToDoList" />
         <activity
-            android:name=".SubActivityFamilyRecipesEdit"
+            android:name=".activity.SubActivityFamilyRecipesEdit"
             android:theme="@style/ThemeToDoList" />
         <activity
-            android:name=".SubActivityFavoriteRestaurant"
+            android:name=".activity.SubActivityFavoriteRestaurant"
             android:theme="@style/ThemeToDoList" />
         <activity
             android:name=".Useless.ToDo.Activity_ToDoList"
@@ -73,6 +71,13 @@
         <activity
             android:name=".Useless.ToDo.EditMessageClass"
             android:theme="@style/ThemeToDoList" />
+
+        <activity android:name=".activity.PersonalActivity" />
+        <activity android:name=".activity.TaskManagementActivity" />
+        <activity android:name=".activity.AddTaskActivity" />
+        <activity android:name=".activity.EditTaskActivity" />
+
+        <receiver android:name=".service.TaskAlarmReceiver" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
