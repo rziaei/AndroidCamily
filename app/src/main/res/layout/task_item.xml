@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.content.Context" />
+
+        <import type="android.view.View" />
+
+        <import type="edu.murraystate.androidcamilydashboard.util.TaskBindingHelper" />
+
+        <variable
+            name="task"
+            type="edu.murraystate.androidcamilydashboard.database.entity.Task" />
+
+        <variable
+            name="listener"
+            type="edu.murraystate.androidcamilydashboard.adapters.TaskAdapter.TaskListener" />
+
+        <variable
+            name="cardView"
+            type="androidx.cardview.widget.CardView" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp8"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/sub_card_elevation">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_label"
+                android:layout_width="@dimen/dp16"
+                android:layout_height="0dp"
+                android:background="@color/colorGrass"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:background="@color/colorMintDark"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/H2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp8"
+                android:ellipsize="end"
+                android:lines="2"
+                android:text="@{task.title}"
+                android:textAlignment="viewStart"
+                android:textColor="@color/primaryTextColor"
+                app:layout_constraintEnd_toStartOf="@+id/cv_options"
+                app:layout_constraintStart_toEndOf="@+id/iv_label"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="title" />
+
+            <LinearLayout
+                android:id="@+id/ll_date_and_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp8"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_label"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title">
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    style="@style/H3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{TaskBindingHelper.DateToString(task.year,task.month,task.day)}"
+                    tools:text="2020/04/22" />
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    style="@style/H3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp8"
+                    android:text="@{TaskBindingHelper.TimeToString(task.hour,task.minute)}"
+                    tools:text="10:10" />
+
+            </LinearLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cv_options"
+                android:layout_width="@dimen/dp40"
+                android:layout_height="@dimen/dp40"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/dp8"
+                android:onClick="@{() -> listener.onTaskOptionsClick(task,cardView)}"
+                app:cardBackgroundColor="@color/deepPurpleLightColor"
+                app:cardCornerRadius="@dimen/card_corner_radius"
+                app:cardElevation="0dp"
+                app:contentPadding="@dimen/dp8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:rippleColor="@color/deepPurpleRippleColor">
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_more"
+                    tools:ignore="ContentDescription" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

@@ -5,6 +5,7 @@ import android.content.IntentSender;
 import android.location.Location;
 
 import android.os.Bundle;
+import android.os.HandlerThread;
 import android.os.Looper;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,14 +25,16 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.location.SettingsClient;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.functions.FirebaseFunctions;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import edu.murraystate.androidcamilydashboard.activity.PersonalActivity;
+import edu.murraystate.androidcamilydashboard.activity.activity_familylocator;
+import edu.murraystate.androidcamilydashboard.activity.activity_kitchen;
 
 import edu.murraystate.androidcamilydashboard.Useless.ToDo.Activity_ToDoList;
 
@@ -50,16 +53,10 @@ public class MainActivity extends AppCompatActivity implements
     protected SettingsClient settingsClient;
     protected boolean requestingLocationUpdates;
 
-    private FirebaseFunctions mFunctions;
     protected FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    private static final String TAG = activity_familylocator.class.getSimpleName();
+    private static final String TAG = MainActivity.class.getSimpleName();
     private static final int REQUEST_CHECK_SETTINGS = 0x1;
-
-    private static final String NAME_KEY = "Name";
-    private static final String LAT_KEY = "Latitude";
-    private static final String LONG_KEY = "Longitude";
-    private static final String PHONE_KEY = "Phone Number";
 
     protected static String name;
     protected static String nickname;
@@ -78,8 +75,6 @@ public class MainActivity extends AppCompatActivity implements
             nickname = extras.getString("nickname");
         }
 
-        Log.i("test", name.toString());
-
         rellay_todolist = findViewById(R.id.rellay_todolist);
         rellay_personal = findViewById(R.id.rellay_personal);
         rellay_kitchen = findViewById(R.id.rellay_kitchen);
@@ -96,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements
         rellay_personal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, activity_personal.class);
+                Intent intent = new Intent(MainActivity.this, PersonalActivity.class);
                 intent.addFlags(intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
             }
@@ -130,7 +125,6 @@ public class MainActivity extends AppCompatActivity implements
         createLocationRequest();
         createLocationCallback();
         buildLocationSettingsRequest();
-        mFunctions = FirebaseFunctions.getInstance();
     }
 
     protected void createLocationRequest() {
@@ -172,9 +166,11 @@ public class MainActivity extends AppCompatActivity implements
                 .addOnSuccessListener(this, new OnSuccessListener<LocationSettingsResponse>() {
                     @Override
                     public void onSuccess(LocationSettingsResponse locSettingsResponse) {
+                        HandlerThread handler = new HandlerThread("Location Updates");
+                        Looper looper = handler.getLooper();
                         mFused.requestLocationUpdates(locRequest,
                                 locCallback,
-                                Looper.getMainLooper());
+                                looper);
                     }
                 })
                 .addOnFailureListener(this, new OnFailureListener() {
@@ -183,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements
                         int statusCode = ((ApiException) e).getStatusCode();
                         switch (statusCode) {
                             case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
-                                Log.i(TAG, "Location settings are not satisfied. Attempting to upgrade " +
+                                Log.i(TAG, "Unsatisfied location settings. Attempting to update " +
                                         "location settings ");
                                 try {
                                     // Show the dialog by calling startResolutionForResult(), and check the
@@ -191,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements
                                     ResolvableApiException rae = (ResolvableApiException) e;
                                     rae.startResolutionForResult(MainActivity.this, REQUEST_CHECK_SETTINGS);
                                 } catch (IntentSender.SendIntentException sie) {
-                                    Log.i(TAG, "PendingIntent unable to execute request.");
+                                    Log.i(TAG, "Unable to execute request.");
                                 }
                                 break;
                             case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
@@ -208,11 +204,15 @@ public class MainActivity extends AppCompatActivity implements
         current = location;
     }
 
+    private void stopLocationUpdates() {
+        mFused.removeLocationUpdates(locCallback);
+    }
+
     public void sendLocation() {
         Log.i(TAG, "Location sent");
         Map<String, Object> user = new HashMap<>();
         user.put("Name", nickname);
-        user.put("Phone:", "+12345678");
+        user.put("Phone:", "tel:12345678");
         user.put("Latitude", current.getLatitude());
         user.put("Longitude", current.getLongitude());
 
@@ -230,6 +230,13 @@ public class MainActivity extends AppCompatActivity implements
                         Log.w(TAG, "Update unsuccessful", e);
                     }
                 });
+    }
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        stopLocationUpdates();
+        finish();
     }
 }
 

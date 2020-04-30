@@ -22,6 +22,16 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_main"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/layout_bottom">
 
     <LinearLayout
         android:id="@+id/layout_map"
@@ -41,14 +51,18 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:context=".activity_familylocator" />
+            tools:context=".activity.activity_familylocator" />
+
+
 
     </LinearLayout>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <LinearLayout
         android:id="@+id/layout_bottom"
-        android:layout_width="396dp"
-        android:layout_height="87dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/colorGrass"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -59,24 +73,25 @@
 
         <Button
             android:id="@+id/buttonContacts"
-            android:layout_width="92dp"
-            android:layout_height="87dp"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
             android:background="?attr/selectableItemBackground"
-            android:gravity="center"
+            android:gravity="center_horizontal|center"
             android:text="Contacts"
             android:textColor="@color/colorWhite"
             android:textSize="25dp" />
 
         <Button
             android:id="@+id/buttonSendToDialer"
-            android:layout_width="wrap_content"
-            android:layout_height="87dp"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
             android:background="?attr/selectableItemBackground"
-            android:gravity="center"
+            android:gravity="center_horizontal|center"
             android:text="Dialer"
             android:textColor="@color/colorWhite"
+            android:enabled="false"
             android:textSize="25dp" />
 
     </LinearLayout>

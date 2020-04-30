@@ -1,17 +1,18 @@
 <resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
 
+        <item name="colorOnSecondary">@color/secondaryTextColor</item>
+    </style>
 
     <!-- Style for custom white radio button color -->
     <style name="WhiteRadioButton" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorControlNormal">@android:color/white</item>
         <item name="colorControlActivated">@android:color/white</item>
-    </style>
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="ThemeToDoList" parent="Theme.AppCompat.Light.NoActionBar">
@@ -49,4 +50,49 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="H1">
+        <item name="android:textSize">@dimen/sp20</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+    </style>
+
+    <style name="H2">
+        <item name="android:textSize">@dimen/sp16</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+    </style>
+
+    <style name="H3">
+        <item name="android:textSize">@dimen/sp14</item>
+        <item name="android:textColor">@color/colorDarkGrey</item>
+    </style>
+
+    <style name="H4">
+        <item name="android:textSize">@dimen/sp12</item>
+        <item name="android:textColor">@color/colorDarkGrey</item>
+    </style>
+
+    <style name="EditText" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textSize">@dimen/sp16</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:textColorHint">@color/colorDarkGrey</item>
+        <item name="hintEnabled">false</item>
+        <item name="android:editable">true</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/card_corner_radius</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/card_corner_radius</item>
+        <item name="boxCornerRadiusTopStart">@dimen/card_corner_radius</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/card_corner_radius</item>
+    </style>
+
+    <style name="ButtonIcon" parent="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon">
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:textColor">@color/colorDarkGrey</item>
+        <item name="cornerRadius">@dimen/dp8</item>
+        <item name="iconSize">@dimen/dp24</item>
+        <item name="iconTint">@android:color/transparent</item>
+        <item name="iconTintMode">add</item>
+        <item name="strokeColor">@color/colorGrey</item>
+    </style>
 </resources>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ringing_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ringing_gradient_0"
+    android:layoutDirection="rtl"
+    android:orientation="vertical"
+    tools:context=".activity.TaskRingingActivity">
+
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp32"
+        android:layout_marginTop="@dimen/dp64"
+        android:layout_marginEnd="@dimen/dp32"
+        android:ellipsize="end"
+        android:lines="3"
+        android:maxLines="3"
+        android:text="title"
+        android:textAlignment="center"
+        android:textColor="@color/secondaryTextColor"
+        android:textSize="34sp" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_date_and_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp32"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_date"
+            style="@style/H2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/secondaryTextColor"
+            tools:text="1398/01/01" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            style="@style/H2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp8"
+            android:textColor="@color/secondaryTextColor"
+            tools:text="10:10" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_dismiss"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginStart="@dimen/dp32"
+        android:layout_marginEnd="@dimen/dp32"
+        android:layout_marginBottom="@dimen/dp64"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="close"
+        android:textSize="@dimen/sp20"
+        app:cornerRadius="@dimen/dp8" />
+
+</LinearLayout>

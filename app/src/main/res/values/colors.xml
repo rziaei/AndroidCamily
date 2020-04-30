@@ -16,12 +16,14 @@
     <color name="colorAccent">#ff4081</color>
     <color name="colorWhite">#ffffff</color>
     <color name="colorGrapeFruit">#Ed5565</color>
+    <color name="colorGrapeFruitLight">#33ED5565</color>
     <color name="colorGrapeFruitDark">#DA4453</color>
     <color name="colorBitterSweet">#FC6E51</color>
     <color name="colorBitterSweetDark">#E9573F</color>
     <color name="colorFlower">#A99E4F0D</color>
     <color name="colorBrown">#C89E4F0D</color>
     <color name="colorFlowerDark">#FF9800</color>
+    <color name="colorFlowerLight">#33FF9800</color>
     <color name="colorGrass">#C6009688</color>
     <color name="colorGrassDark">#009688</color>
     <color name="colorGrayJeans">#9E7C828B</color>
@@ -29,9 +31,21 @@
     <color name="colorLavander">#Ac92ec</color>
     <color name="colorLavanderDark">#967adc</color>
     <color name="colorMint">#48cfad</color>
+    <color name="colorMintLight">#3348CFAD</color>
     <color name="colorMintDark">#BC009688</color>
     <color name="colorAqua">#4fc1e9</color>
     <color name="colorAquaDark">#3bafda</color>
     <color name="colorPinkrose">#ec87c0</color>
     <color name="colorPinkroseDark">#D770ad</color>
+
+
+    <color name="primaryTextColor">#000000</color>
+    <color name="secondaryTextColor">#fff</color>
+
+    <color name="colorLightGrey">#fafafa</color>
+    <color name="colorGrey">#9e9e9e</color>
+    <color name="colorDarkGrey">#616161</color>
+
+    <color name="deepPurpleLightColor">#ede7f6</color>
+    <color name="deepPurpleRippleColor">#bbb5c3</color>
 </resources>
