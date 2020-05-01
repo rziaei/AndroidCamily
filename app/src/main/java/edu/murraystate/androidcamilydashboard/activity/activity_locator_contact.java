@@ -30,15 +30,17 @@ public class activity_locator_contact extends AppCompatActivity {
         setContentView(R.layout.activity_locator_contact);
         listView = (ListView) findViewById (R.id.ListView);
 
+        // arraylist for contacts
         arrayListContact = new ArrayList <> ();
         arrayAdapterContact = new ArrayAdapter <> (this, android.R.layout.simple_list_item_1, arrayListContact);
         listView.setAdapter (arrayAdapterContact);
 
         Intent intent = getIntent();
+        // grab hashmap from locator
         contact = (HashMap<String, Contact>) intent.getSerializableExtra("contact");
 
+        // Add each contact to an arraylist for the listview
         Iterator contactIterator = contact.entrySet().iterator();
-
         while (contactIterator.hasNext()) {
             HashMap.Entry element = (HashMap.Entry)contactIterator.next();
             Contact current = (Contact) element.getValue();
@@ -46,12 +48,12 @@ public class activity_locator_contact extends AppCompatActivity {
             arrayAdapterContact.notifyDataSetChanged();
         }
 
+        // Returns to locator to center on selected contact
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
                 Intent i = new Intent();
-
                 i.putExtra("Selected", (Parcelable) listView.getItemAtPosition(position));
                 setResult(RESULT_OK, i);
                 finish();

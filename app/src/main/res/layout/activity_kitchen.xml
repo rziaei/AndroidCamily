@@ -1,28 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
 
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
 
     tools:context="edu.murraystate.androidcamilydashboard.activity.PersonalActivity">
 
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:weightSum="4">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/rellay_Calories"
-                android:layout_width="410dp"
+                android:layout_width="match_parent"
                 android:layout_height="157dp"
                 android:layout_margin="2dp"
                 android:layout_weight="1"
@@ -57,7 +49,7 @@
 
             <LinearLayout
                 android:id="@+id/rellay_GroceryList"
-                android:layout_width="410dp"
+                android:layout_width="match_parent"
                 android:layout_height="158dp"
                 android:layout_margin="2dp"
                 android:layout_weight="1"
@@ -84,15 +76,13 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:src="@drawable/ic_create_black_24dp"
-                    android:tint="@color/colorWhite"
-
-                    />
+                    android:tint="@color/colorWhite" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/rellay_FavouriteResturants"
-                android:layout_width="410dp"
+                android:layout_width="match_parent"
                 android:layout_height="158dp"
                 android:layout_margin="2dp"
                 android:layout_weight="1"
@@ -127,7 +117,7 @@
 
             <LinearLayout
                 android:id="@+id/rellay_Cooking"
-                android:layout_width="410dp"
+                android:layout_width="match_parent"
                 android:layout_height="160dp"
                 android:layout_margin="2dp"
                 android:layout_weight="1"
@@ -161,7 +151,3 @@
 
 
     </ScrollView>
-
-
-
-</LinearLayout>

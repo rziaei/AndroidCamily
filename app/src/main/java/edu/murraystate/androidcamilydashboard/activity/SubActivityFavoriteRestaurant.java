@@ -151,6 +151,10 @@ public class SubActivityFavoriteRestaurant extends AppCompatActivity implements 
             public void onClick(View view) {
                 layoutList.setVisibility(View.GONE);
                 layoutMap.setVisibility(View.VISIBLE);
+                LatLng current = new LatLng(location.getLatitude(), location.getLongitude());
+                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(current);
+                mMap.moveCamera(cameraUpdate);
+                showPlaceInformation(current);
             }
         });
 
@@ -309,7 +313,6 @@ public class SubActivityFavoriteRestaurant extends AppCompatActivity implements 
                 ActivityCompat.requestPermissions( this, REQUIRED_PERMISSIONS,
                         PERMISSIONS_REQUEST_CODE);
             }
-
         }
 
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
