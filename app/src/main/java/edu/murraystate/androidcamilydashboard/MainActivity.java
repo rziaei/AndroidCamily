@@ -79,7 +79,6 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
 
         Bundle extras = getIntent().getExtras();
-        Intent intent = getIntent();
         if (extras!=null) {
             name = extras.getString("username");
             nickname = extras.getString("nickname");
