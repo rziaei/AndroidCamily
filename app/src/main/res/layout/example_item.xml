@@ -6,17 +6,40 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/massage"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="599dp"
-        android:layout_weight="6"
-        android:gravity="top"
-        android:hint="WRITE YOUR MESSAGE"
-        android:textSize="20sp"
-        android:layout_marginBottom="200dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/colorGrapeFruit"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="Add To-Do Item"
+            android:textColor="@color/colorWhite"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/massage"
+            android:layout_width="match_parent"
+            android:layout_height="599dp"
+            android:layout_weight="6"
+            android:gravity="top"
+            android:hint="WRITE YOUR MESSAGE"
+            android:textSize="20sp"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button"

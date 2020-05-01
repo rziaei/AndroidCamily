@@ -152,7 +152,7 @@ public class SubActivityFavoriteRestaurant extends AppCompatActivity implements 
                 layoutList.setVisibility(View.GONE);
                 layoutMap.setVisibility(View.VISIBLE);
                 LatLng current = new LatLng(location.getLatitude(), location.getLongitude());
-                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(currentPosition);
+                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(current);
                 mMap.moveCamera(cameraUpdate);
                 showPlaceInformation(current);
             }
