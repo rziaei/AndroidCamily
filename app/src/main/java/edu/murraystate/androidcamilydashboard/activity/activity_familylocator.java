@@ -122,10 +122,13 @@ public class activity_familylocator extends MainActivity implements OnMapReadyCa
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        mMap.setMyLocationEnabled(true);
+        mMap.setMyLocationEnabled(true); //show own location
+
+        // Custom marker selection behavior
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
+                // Move to the marker location
                 CameraPosition cameraPosition = new CameraPosition.Builder()
                         .target(marker.getPosition())
                         .zoom(mMap.getCameraPosition().zoom)
@@ -133,6 +136,8 @@ public class activity_familylocator extends MainActivity implements OnMapReadyCa
                 CameraUpdate cu = CameraUpdateFactory.newCameraPosition(cameraPosition);
                 mMap.animateCamera(cu);
 
+                // enable the dialer button and store the selected user's phone number
+                dialerButton.setText("Dialer");
                 Contact contact = contacts.get(marker.getSnippet());
                 currentPhone = contact.getPhone();
                 dialerButton.setEnabled(true);
@@ -141,6 +146,7 @@ public class activity_familylocator extends MainActivity implements OnMapReadyCa
         });
     }
 
+    // needed for location services
     private void createLocationCallback() {
         locCallback = new LocationCallback() {
             @Override
@@ -153,6 +159,7 @@ public class activity_familylocator extends MainActivity implements OnMapReadyCa
         };
     }
 
+    // update location data
     private void updateLocationUI() {
         getContactInformation();
     }
@@ -171,7 +178,7 @@ public class activity_familylocator extends MainActivity implements OnMapReadyCa
                 .addOnSuccessListener(this, new OnSuccessListener<LocationSettingsResponse>() {
                     @Override
                     public void onSuccess(LocationSettingsResponse locSettingsResponse) {
-                        HandlerThread handler = new HandlerThread("Location Updates");
+                        HandlerThread handler = new HandlerThread("Location Updates"); // use a handler thread
                         Looper looper = handler.getLooper();
                         mFused.requestLocationUpdates(locRequest,
                                 locCallback,
@@ -210,6 +217,7 @@ public class activity_familylocator extends MainActivity implements OnMapReadyCa
         mFused.removeLocationUpdates(locCallback);
     }
 
+    // update location and ui
     @Override
     public void onLocationChanged(Location location) {
         current = location;
@@ -225,9 +233,10 @@ public class activity_familylocator extends MainActivity implements OnMapReadyCa
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            mMap.clear();
+                            mMap.clear(); // clear markers
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 if (!document.getId().equals(MainActivity.name)) {
+                                    //grab information of each user and assign them to a hashmap (except self)
                                     if (!contacts.containsKey(document.get("Name")))
                                     {
                                         contacts.put(document.getId(),
@@ -239,7 +248,7 @@ public class activity_familylocator extends MainActivity implements OnMapReadyCa
                                     Log.d(TAG, document.getId() + " => " + document.getData());
                                     LatLng contactLoc = new LatLng(Double.parseDouble(document.get("Latitude").toString()),
                                             Double.parseDouble(document.get("Longitude").toString()));
-
+                                    // create marker with custom icon
                                     setCustomIcon(document.get("Name").toString());
                                     mMap.addMarker(new MarkerOptions().position(contactLoc)
                                             .title(document.get("Name").toString())
@@ -256,6 +265,7 @@ public class activity_familylocator extends MainActivity implements OnMapReadyCa
                 });
     }
 
+    // create custom icon for marker that includes text
     public void setCustomIcon(String name) {
         markerText = new TextView(activity_familylocator.this);
         markerText.setText(name);

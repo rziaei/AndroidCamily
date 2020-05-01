@@ -80,4 +80,8 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="permission_rationale">Location permission is needed for app to function correctly</string>
+    <string name="permission_denied_explanation">Permission was denied, but is required for app to
+        function correctly.</string>
+    <string name="settings">Settings</string>
 </resources>

@@ -76,7 +76,7 @@
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_weight="1"
-            android:background="?attr/selectableItemBackground"
+            android:background="@color/colorGrass"
             android:gravity="center_horizontal|center"
             android:text="Contacts"
             android:textColor="@color/colorWhite"
@@ -87,10 +87,11 @@
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_weight="1"
-            android:background="?attr/selectableItemBackground"
+            android:background="@color/colorGrass"
             android:gravity="center_horizontal|center"
-            android:text="Dialer"
+            android:text=""
             android:textColor="@color/colorWhite"
+            android:theme="@style/AccentButton"
             android:enabled="false"
             android:textSize="25dp" />
 

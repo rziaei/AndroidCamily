@@ -95,4 +95,9 @@
         <item name="iconTintMode">add</item>
         <item name="strokeColor">@color/colorGrey</item>
     </style>
+
+    <style name="AccentButton" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="colorButtonNormal">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorGrayJeans</item>
+    </style>
 </resources>
