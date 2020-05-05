@@ -226,43 +226,48 @@ public class activity_familylocator extends MainActivity implements OnMapReadyCa
 
     // Grab contact information from server
     public void getContactInformation() {
-        Log.i(TAG, "Retrieving Contact Information...");
-        db.collection("users")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            mMap.clear(); // clear markers
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                if (!document.getId().equals(MainActivity.name)) {
-                                    //grab information of each user and assign them to a hashmap (except self)
-                                    if (!contacts.containsKey(document.get("Name")))
-                                    {
-                                        contacts.put(document.getId(),
-                                                new Contact(document.get("Name").toString(),
-                                                        document.get("Phone:").toString(),
-                                                        document.getDouble("Latitude"),
-                                                        document.getDouble("Longitude")));
+        new Thread(new Runnable() {
+            public void run() {
+                Log.i(TAG, "Retrieving Contact Information...");
+                db.collection("users")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    mMap.clear(); // clear markers
+
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        if (!document.getId().equals(MainActivity.name)) {
+                                            //grab information of each user and assign them to a hashmap (except self)
+                                            if (!contacts.containsKey(document.get("Name")))
+                                            {
+                                                contacts.put(document.getId(),
+                                                        new Contact(document.get("Name").toString(),
+                                                                document.get("Phone:").toString(),
+                                                                document.getDouble("Latitude"),
+                                                                document.getDouble("Longitude")));
+                                            }
+                                            Log.d(TAG, document.getId() + " => " + document.getData());
+                                            LatLng contactLoc = new LatLng(Double.parseDouble(document.get("Latitude").toString()),
+                                                    Double.parseDouble(document.get("Longitude").toString()));
+                                            // create marker with custom icon
+                                            setCustomIcon(document.get("Name").toString());
+                                            mMap.addMarker(new MarkerOptions().position(contactLoc)
+                                                    .title(document.get("Name").toString())
+                                                    .snippet(document.getId())
+                                                    .icon(BitmapDescriptorFactory.fromBitmap(icon)));
+                                        }
                                     }
-                                    Log.d(TAG, document.getId() + " => " + document.getData());
-                                    LatLng contactLoc = new LatLng(Double.parseDouble(document.get("Latitude").toString()),
-                                            Double.parseDouble(document.get("Longitude").toString()));
-                                    // create marker with custom icon
-                                    setCustomIcon(document.get("Name").toString());
-                                    mMap.addMarker(new MarkerOptions().position(contactLoc)
-                                            .title(document.get("Name").toString())
-                                            .snippet(document.getId())
-                                            .icon(BitmapDescriptorFactory.fromBitmap(icon)));
+                                }
+                                else
+                                {
+                                    Log.d(TAG, "Error getting documents: ", task.getException());
                                 }
                             }
-                        }
-                        else
-                        {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
+                        });
+            }
+        }).start();
     }
 
     // create custom icon for marker that includes text

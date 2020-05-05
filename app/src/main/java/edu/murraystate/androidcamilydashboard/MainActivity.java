@@ -220,27 +220,31 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     public void sendLocation() {
-        Log.i(TAG, "Location sent");
-        Map<String, Object> user = new HashMap<>();
-        user.put("Name", nickname);
-        user.put("Phone:", "tel:12345678");
-        user.put("Latitude", current.getLatitude());
-        user.put("Longitude", current.getLongitude());
+        new Thread(new Runnable() {
+            public void run() {
+                Log.i(TAG, "Location sent");
+                Map<String, Object> user = new HashMap<>();
+                user.put("Name", nickname);
+                user.put("Phone:", "tel:12345678");
+                user.put("Latitude", current.getLatitude());
+                user.put("Longitude", current.getLongitude());
 
-        db.collection("users").document(name)
-                .set(user)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "User successfully updated");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Update unsuccessful", e);
-                    }
-                });
+                db.collection("users").document(name)
+                        .set(user)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.d(TAG, "User successfully updated");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w(TAG, "Update unsuccessful", e);
+                            }
+                        });
+            }
+        }).start();
     }
 
     /**
